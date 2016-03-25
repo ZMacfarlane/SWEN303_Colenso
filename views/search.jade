@@ -1,0 +1,15 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+head
+  title= title
+block body
+  +navbar("Colenso Project", "dropdown_menu")
+    +nav_item("/") Home
+    +nav_item("/") About
+    +nav_item("/", "active") Search
+      +icon("search")
+    +nav_item_dropdown("#")(label= "Advanced Search")
+      +nav_item("#") Manual XQuery
+  .container
+    h1= title
+    p Search for things
