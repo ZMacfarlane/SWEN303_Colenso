@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET search page. */
+/* GET browse documents page. */
 router.get('/', function(req, res, next) {
-  res.render('search', { title: 'Search the Colenso Project' });
+  res.render('browse', { title: 'Browse the Colenso Project' });
 });
 
 module.exports = router;

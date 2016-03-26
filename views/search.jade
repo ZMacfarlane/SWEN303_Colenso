@@ -3,13 +3,20 @@ extends ../node_modules/jade-bootstrap/_bootstrap
 head
   title= title
 block body
-  +navbar("Colenso Project", "dropdown_menu")
+
+  // Navigation Bar begin
+
+  +navbar("Colenso Project", "dropdown_menu", "inverse")
     +nav_item("/") Home
-    +nav_item("/") About
-    +nav_item("/", "active") Search
-      +icon("search")
+    +nav_item("about") About
+    +nav_item("browse") Browse
+    +nav_item("search", "active") Search
     +nav_item_dropdown("#")(label= "Advanced Search")
       +nav_item("#") Manual XQuery
+
+  //Navigtion bar end
+
   .container
     h1= title
     p Search for things
+     +input("text","txtSearch","Search","")

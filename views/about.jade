@@ -7,8 +7,8 @@ block body
   // Navigation Bar begin
 
   +navbar("Colenso Project", "dropdown_menu", "inverse")
-    +nav_item("/", "active") Home
-    +nav_item("about") About
+    +nav_item("/") Home
+    +nav_item("about", "active") About
     +nav_item("browse") Browse
     +nav_item("search") Search
     +nav_item_dropdown("#")(label= "Advanced Search")
@@ -18,4 +18,4 @@ block body
 
   .container
     h1= title
-    p Welcome to #{title}
+    p About the Colenso Project
