@@ -1,4 +1,6 @@
 extends ../node_modules/jade-bootstrap/_bootstrap
+append styles
+  link(rel='stylesheet', href='/stylesheets/style.css')
 
 head
   title= title
@@ -19,11 +21,11 @@ block body
   .container
     h1= title
     p Search for things
-    //+input("text","txtSearch","Search","") search_results
-    //form(action="/search/results", method="get")
-      //input(type="text", name="searchString")
-      //input(type="submit")
 
-    form.form-group(action="/searchresults", method="get")
-      input.input-block-level(type="text", name="searchString")
-      button.btn.btn-large(type="submit") Submit
+    form(action="/searchresults", method="get")
+      input(type="text", name="searchString")
+      input(type="submit", value="Search")
+
+    //form.form-group(action="/searchresults", method="get")
+      //input.input-block-level(type="text", name="searchString")
+      //button.btn.btn-large(type="submit") Submit

@@ -1,4 +1,6 @@
 extends ../node_modules/jade-bootstrap/_bootstrap
+append styles
+  link(rel='stylesheet', href='/stylesheets/style.css')
 
 head
   title= title
@@ -18,4 +20,7 @@ block body
 
   .container
     h1= title
-    p Browse Documents
+  .container
+   each val in list
+    li: a(href = "/viewFile?file=/" + val)
+      !{val}
