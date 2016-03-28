@@ -19,11 +19,8 @@ block body
   .container
     h1= title
     p Search for things
-    //+input("text","txtSearch","Search","") search_results
-    //form(action="/search/results", method="get")
-      //input(type="text", name="searchString")
-      //input(type="submit")
-
-    form.form-group(action="/searchresults", method="get")
-      input.input-block-level(type="text", name="searchString")
-      button.btn.btn-large(type="submit") Submit
+    // +input("text","txtSearch","Search","")
+    form(action="/searchresults", method="get")
+      input(type="text", name="searchString")
+      input(type="submit")
+    p You typed in #{content}.
