@@ -21,8 +21,17 @@ block body
   .container
     h1= title
     p Search for things
-    // +input("text","txtSearch","Search","")
+
     form(action="/searchresults", method="get")
       input(type="text", name="searchString")
       input(type="submit", value="Search")
-    p You typed in #{content}.
+    p You searched for #{content}.
+    if numResults < 2
+      p No results found
+
+    else
+      p The result was:
+      .container
+        each val in list
+          li: a(href = "/viewFile?file=/" + val)
+            |  !{val}
