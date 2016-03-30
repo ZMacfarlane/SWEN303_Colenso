@@ -32,9 +32,15 @@ router.get('/search', function(req, res, next) {
   res.render('search', { title: 'Search the Colenso Project' });
 });
 
+/*Get results from string search*/
 router.get('/searchresults', function(req, res) {
+  var search = req.query.searchString;
+  search = search.replace(/ AND /g, "' ftand '");
+  search = search.replace(/ OR /g, "' ftor '");
+  search = search.replace(/ NOT /g, "' ftnot '");
+
   client.execute("XQUERY declare namespace tei = 'http://www.tei-c.org/ns/1.0'; " +
-  "for $p in *[.//text() contains text '" + req.query.searchString + "'] return db:path($p)",
+  "for $p in *[.//text() contains text '" + search + "' using wildcards] return db:path($p)",
   function(error,result) {
     if(error){console.error(error);}
     else{
@@ -55,6 +61,7 @@ router.get('/viewFile', function(req, res){
     })
 });
 
+/*Download TEI of document*/
 router.get('/download', function(req, res){
     path = req.query.path.split('/');
     name = path[path.length - 1];
