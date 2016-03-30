@@ -31,22 +31,30 @@ router.get('/browse', function(req, res, next) {
 router.get('/search', function(req, res, next) {
   res.render('search', { title: 'Search the Colenso Project' });
 });
-/*
-router.get('/searchresults', function(req, res) {
-  res.render('search_results', { title: 'Search the Colenso Project', content: req.query.searchString });
-});
-*/
+
 router.get('/searchresults', function(req, res) {
   client.execute("XQUERY declare namespace tei = 'http://www.tei-c.org/ns/1.0'; " +
-  //"//tei:name[@type = 'place' and position() = 1 and . ='” + req.query.searchString + ”']",
   "for $p in *[.//text() contains text '" + req.query.searchString + "'] return db:path($p)",
-  function(err,result) {
-    if(err){console.error(err);}
+  function(error,result) {
+    if(error){console.error(error);}
     else{
       list = result.result.split("\r\n");
       numResults = list.length;
-      //res.render('search_results', { title: 'Search the Colenso Project', content: req.query.searchString, result: res.result });
       res.render('search_results', { title: 'Search the Colenso Project', content: req.query.searchString, list: list, numResults: numResults});
     }});
 });
+
+/*View file at link. */
+router.get('/viewFile', function(req, res){
+    client.execute("XQUERY doc('Colenso/" + req.query.path +"')",
+    function(error, result) {
+      if(error){console.error(error);}
+      else{
+        res.render('view_file', {title: 'Here is your file', path: req.query.path, file: result.result});
+      }
+    })
+});
+
+
+
 module.exports = router;

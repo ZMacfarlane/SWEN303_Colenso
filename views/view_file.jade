@@ -12,7 +12,7 @@ block body
     +nav_item("/") Home
     +nav_item("about") About
     +nav_item("browse") Browse
-    +nav_item("search", "active") Search
+    +nav_item("search") Search
     +nav_item_dropdown("#")(label= "Advanced Search")
       +nav_item("#") Manual XQuery
 
@@ -20,18 +20,8 @@ block body
 
   .container
     h1= title
-    p Search for things
 
-    form(action="/searchresults", method="get")
-      input(type="text", name="searchString")
-      input(type="submit", value="Search")
-    p You searched for #{content}.
-    if numResults < 2
-      p No results found
+    p #{path}
 
-    else
-      p The result was:
-      .container
-        each val in list
-          li: a(href = "/viewFile?path=/" + val)
-            |  !{val}
+  .container
+     #{file}

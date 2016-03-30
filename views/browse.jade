@@ -22,5 +22,5 @@ block body
     h1= title
   .container
    each val in list
-    li: a(href = "/viewFile?file=/" + val)
+    li: a(href = "/viewFile?path=/" + val)
       | !{val}
