@@ -55,6 +55,18 @@ router.get('/viewFile', function(req, res){
     })
 });
 
-
+router.get('/download', function(req, res){
+    path = req.query.path.split('/');
+    name = path[path.length - 1];
+    client.execute("XQUERY doc('Colenso/" + req.query.path + "')",
+      function(error, result){
+        if(error){console.error(error);}
+        else{
+          res.writeHead(200, {'Content-type': 'text/TEI; filename=' + name});
+          res.write(result.result);
+          res.end();
+        }
+      })
+});
 
 module.exports = router;

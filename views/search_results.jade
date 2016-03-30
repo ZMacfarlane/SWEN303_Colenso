@@ -13,8 +13,6 @@ block body
     +nav_item("about") About
     +nav_item("browse") Browse
     +nav_item("search", "active") Search
-    +nav_item_dropdown("#")(label= "Advanced Search")
-      +nav_item("#") Manual XQuery
 
   //Navigtion bar end
 
@@ -24,7 +22,16 @@ block body
 
     form(action="/searchresults", method="get")
       input(type="text", name="searchString")
-      input(type="submit", value="Search")
+      input(type="submit", value="String Search")
+
+  br
+  .container
+    form(action="/searchresults", method="get")
+      input(type="text", name="searchXQUERY")
+      input(type="submit", value="XQUERY Search")
+
+  br
+  .container
     p You searched for #{content}.
     if numResults < 2
       p No results found
@@ -32,6 +39,6 @@ block body
     else
       p The result was:
       .container
-        each val in list
-          li: a(href = "/viewFile?path=/" + val)
-            |  !{val}
+        each item in list
+          li: a(href = "/viewFile?path=/" + item)
+            |  !{item}

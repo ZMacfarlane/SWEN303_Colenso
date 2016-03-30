@@ -13,15 +13,16 @@ block body
     +nav_item("about") About
     +nav_item("browse") Browse
     +nav_item("search") Search
-    +nav_item_dropdown("#")(label= "Advanced Search")
-      +nav_item("#") Manual XQuery
 
   //Navigtion bar end
 
   .container
     h1= title
-
     p #{path}
-
+    a(href='download?path=' + path) Download TEI
   .container
-     #{file}
+    br
+    #{file}
+  .container
+    br
+    a(href='download?path=' + path) Download TEI
